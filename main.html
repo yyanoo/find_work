@@ -2,24 +2,30 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 5 + Vue 3 基礎框架</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 3 RPG 系統</title>
+    
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <div id="app">
+    <!-- Vue 3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script defer src="app.js"></script>
+</head>
+
+<body class="bg-light">
+    <div id="app" class="container">
         <!-- 導覽列 -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">{{ siteName }}</a>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">{{ siteData.siteName }}</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item" v-for="(link, index) in navLinks" :key="index">
+                    <ul class="navbar-nav">
+                        <li class="nav-item" v-for="link in siteData.navLinks" :key="link.text">
                             <a class="nav-link" :href="link.url">{{ link.text }}</a>
                         </li>
                     </ul>
@@ -27,42 +33,44 @@
             </div>
         </nav>
 
-        <!-- 主要內容 -->
-        <header class="hero bg-primary text-white text-center py-5">
-            <div class="container">
-                <h1>玩家血量:{{ heroTitle }}</h1>
-                <p class="lead">{{ heroSubtitle }}</p>
-                <div class="row">
-                    <div class="col">
-                        <button class="btn btn-light btn-lg" @click="changeTitle">投骰子</button>
-                    </div>
-                </div>
-            </div>
+        <!-- 主要區塊 -->
+        <header class="text-center mt-4">
+            <h2>{{ siteData.heroTitle }}</h2>
+            <p>{{ siteData.heroSubtitle }}</p>
         </header>
 
-        <!-- 主要區塊 -->
-        <section class="container my-5">
-            <div class="row">
-                <div class="col-md-4" v-for="(feature, index) in features" :key="index">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ feature.title }}</h5>
-                            <p class="card-text">{{ feature.description }}</p>
-                        </div>
+        <div class="row mt-4">
+            <!-- 角色資訊 -->
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h2 class="card-title">角色資訊</h2>
+                        <p class="card-text">等級：<strong>{{ player.lvl }}</strong></p>
+                        <p class="card-text">經驗值：<strong>{{ player.exp }} / {{ player.exp_tonextlvl }}</strong></p>
+                        <p class="card-text">生命值：<strong>{{ player.hp }} / {{ player.max_hp }}</strong></p>
+                        <p class="card-text">攻擊力：<strong>{{ player.atk }}</strong></p>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- 頁腳 -->
-        <footer class="bg-dark text-white text-center py-3">
-            <p class="mb-0">© {{ siteName }}</p>
-        </footer>
+            <!-- 怪物資訊 -->
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h2 class="card-title">怪物資訊</h2>
+                        <p class="card-text">生命值：<strong>{{ monster.hp }} / {{ monster.max_hp }}</strong></p>
+                        <p class="card-text">攻擊力：<strong>{{ monster.atk }}</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 攻擊按鈕 -->
+        <div class="text-center mt-4">
+            <button class="btn btn-danger btn-lg" @click="playerAttack">攻擊怪物</button>
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="app.js"></script> <!-- Vue 3 應用程式 -->
 </body>
 </html>
 
