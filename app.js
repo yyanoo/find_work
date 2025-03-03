@@ -6,8 +6,8 @@ createApp({
         const siteData = reactive({
             siteName: "我的網站",
             navLinks: [
-                { text: "首頁", url: "#https://yyanoo.github.io/find_work/index.html" },
-                { text: "角色資訊", url: "#https://yyanoo.github.io/find_work/main1.html" }
+                { text: "首頁", url: "/index.html" },
+                { text: "角色資訊", url: "main1.html" }
             ],
             Main_title: "骰子魔物戰",
             Sub_title: "點擊按鈕 進行投骰子 依照大小來決定移動距離與傷害判例"
