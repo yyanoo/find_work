@@ -15,7 +15,9 @@
 </head>
 
 <body class="bg-light">
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <!-- 導覽列 -->
+    <div id="app">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">{{ siteData.siteName }}</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -29,9 +31,9 @@
                     </ul>
                 </div>
             </div>
-    </nav>
-    <div id="app" class="container">
-
+        </nav>
+    
+    <div class="container">
         <!-- 主要區塊 -->
         <header class="text-center mt-4">
             <h2>{{ siteData.Main_title }}</h2>
@@ -69,7 +71,7 @@
             <button class="btn btn-danger btn-lg" @click="playerAttack">攻擊怪物</button>
         </div>
     </div>
-
+     </div>
 </body>
 </html>
 
