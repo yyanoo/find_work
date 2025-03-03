@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="style.css">
+    <title>Vue 3 RPG 系統zzz</title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -14,27 +12,68 @@
 
     <!-- Vue 3 -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script defer src="app.js"></script>
-
 </head>
 
-<body>
-    <div class="container">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path
-                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                    </svg></span>
+<body class="bg-light">
+    <!-- 導覽列 -->
+    <div id="app">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">{{ siteData.siteName }}</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item" v-for="link in siteData.navLinks" :key="link.text">
+                            <a class="nav-link" :href="link.url">{{ link.text }}</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <input type="text" placeholder="Search">
-        </div>
+        </nav>
 
-        <div class="row">
-            <div class="col-md-4 border rounded shadow">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum fugiat, id aperiam vel iusto possimus vitae a voluptates harum saepe ullam pariatur corrupti. Animi fugiat, accusantium iure doloribus temporibus dignissimos.</div>
+        <div class="container">
+            <!-- 主要區塊 -->
+            <header class="text-center mt-4">
+                <h2>{{ siteData.Main_title }}</h2>
+                <p>{{ siteData.Sub_title }}</p>
+            </header>
+
+            <div class="row mt-4">
+                <!-- 角色資訊 -->
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h2 class="card-title">角色資訊</h2>
+                            <p class="card-text">等級：<strong>{{ player.lvl }}</strong></p>
+                            <p class="card-text">經驗值：<strong>{{ player.exp }} / {{ player.exp_tonextlvl }}</strong></p>
+                            <p class="card-text">生命值：<strong>{{ player.hp }} / {{ player.max_hp }}</strong></p>
+                            <p class="card-text">攻擊力：<strong>{{ player.atk }}</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 怪物資訊 -->
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h2 class="card-title">怪物資訊</h2>
+                            <p class="card-text">生命值：<strong>{{ monster.hp }} / {{ monster.max_hp }}</strong></p>
+                            <p class="card-text">攻擊力：<strong>{{ monster.atk }}</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 攻擊按鈕 -->
+            <div class="text-center mt-4">
+                <button class="btn btn-danger btn-lg" @click="playerAttack">攻擊怪物</button>
+            </div>
         </div>
     </div>
+    <script defer src="app.js"></script>
+
 </body>
 
 </html>
