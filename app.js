@@ -65,9 +65,9 @@ createApp({
                 }
             }
         };
-
         // 監聽等級變化
         watchEffect(checkLvlUp);
+        
         return { siteData, player, monster, playerAttack, onSubmit};
     }
 }).mount("#app");
