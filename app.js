@@ -1,17 +1,30 @@
-const { createApp, ref, reactive, watchEffect } = Vue;
+const { createApp, ref, reactive, watchEffect, useRouter } = Vue;
 
 createApp({
+
     setup() {
         // 網站 UI 數據
         const siteData = reactive({
             siteName: "我的網站",
             navLinks: [
                 { text: "首頁", url: "" },
-                { text: "角色資訊", url: "main1.html" }
+                { text: "角色資訊", url: "https://yyanoo.github.io/find_work/main1.html" }
             ],
             Main_title: "骰子魔物戰",
             Sub_title: "點擊按鈕 進行投骰子 依照大小來決定移動距離與傷害判例"
         });
+
+        //表單 --- 未測試
+        const form = reactive({
+            name: '',
+            email: '',
+            phone: '',
+            message: ''
+        });
+        
+        const onSubmit = () => {
+            alert(`表單已提交！\n姓名: ${form.name}\nEmail: ${form.email}\n電話: ${form.phone}\n訊息: ${form.message}`);
+        };
 
         // 玩家數據
         const player = reactive({
@@ -55,7 +68,6 @@ createApp({
 
         // 監聽等級變化
         watchEffect(checkLvlUp);
-
-        return { siteData, player, monster, playerAttack };
+        return { siteData, player, monster, playerAttack, onSubmit};
     }
 }).mount("#app");
