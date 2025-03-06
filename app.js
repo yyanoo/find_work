@@ -32,6 +32,11 @@ createApp({
             alert(`表單已提交！\n姓名: ${form.name}\nEmail: ${form.email}\n電話: ${form.phone}\n訊息: ${form.message}`);
         };
 
+        //滑動到對於文章
+        const scroll = () =>{
+            document.getElementById(roll).scrollIntoView({behavior:"smooth"});
+        }
+
         // 玩家數據
         const player = reactive({
             lvl: 1,
@@ -74,6 +79,6 @@ createApp({
 
         // 監聽等級變化
         watchEffect(checkLvlUp);
-        return { siteData, player, monster, playerAttack, onSubmit};
+        return { siteData, player, monster, playerAttack, onSubmit, scroll};
     }
 }).mount("#app");
