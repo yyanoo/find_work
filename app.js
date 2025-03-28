@@ -5,19 +5,14 @@ createApp({
     setup() {
         // 網站 UI 數據
         const siteData = reactive({
-            siteName: "我的網站",
+            siteName: "骰子魔物戰",
             navLinks: [
                 { text: "首頁", url: "" },
                 { text: "角色資訊", url: "https://yyanoo.github.io/find_work/main1.html" }
             ],
 
-            Main_title: "張俊鴻",
-            Sub_title: "網頁設計作品",
-            Prg_p:"程式類作品",
-            Dng_p:"設計類作品",
-
-            Game_title: "骰子魔物戰",
-            Gamesub_title: "點擊按鈕 進行投骰子 依照大小來決定移動距離與傷害判例"
+            Main_title: "骰子魔物戰",
+            Sub_title: "點擊按鈕 進行投骰子 依照大小來決定移動距離與傷害判例",
         });
 
         // 玩家數據
@@ -33,8 +28,8 @@ createApp({
         // 怪物數據
         const monster = reactive({
             get_exp: 3,
-            hp: ref(5),
-            max_hp: 5,
+            hp: ref(100),
+            max_hp: 100,
             atk: 2
         });
 
