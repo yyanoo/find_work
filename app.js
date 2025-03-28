@@ -20,23 +20,6 @@ createApp({
             Gamesub_title: "點擊按鈕 進行投骰子 依照大小來決定移動距離與傷害判例"
         });
 
-        //表單 --- 未測試
-        const form = reactive({
-            name: '',
-            email: '',
-            phone: '',
-            message: ''
-        });
-        
-        const onSubmit = () => {
-            alert(`表單已提交！\n姓名: ${form.name}\nEmail: ${form.email}\n電話: ${form.phone}\n訊息: ${form.message}`);
-        };
-
-        //滑動到對於文章
-        const scroll = () =>{
-            document.getElementById(roll).scrollIntoView({behavior:"smooth"});
-        }
-
         // 玩家數據
         const player = reactive({
             lvl: 1,
@@ -83,6 +66,6 @@ createApp({
 
         // 監聽等級變化
         watchEffect(check_lvlup);
-        return { siteData, player, monster, player_attack, onSubmit, scroll,random_dice};
+        return { siteData, player, monster, player_attack,random_dice};
     }
 }).mount("#app");
