@@ -50,13 +50,13 @@ createApp({
         // 怪物數據
         const monster = reactive({
             get_exp: 3,
-            hp: ref(5),
+            hp: 5,
             max_hp: 5,
             atk: 2
         });
 
         // 檢查等級提升
-        const checkLvlUp = () => {
+        function check_lvlup {
             while (player.exp >= player.exp_tonextlvl) {
                 player.exp -= player.exp_tonextlvl;
                 player.lvl++;
@@ -67,7 +67,7 @@ createApp({
         };
 
         // 玩家攻擊
-        const playerAttack = () => {
+        function player_attack {
             if (monster.hp > 0) {
                 monster.hp -= player.atk;
                 if (monster.hp <= 0) {
@@ -77,8 +77,12 @@ createApp({
             }
         };
 
+        function random_dice =()=>{
+
+        }
+
         // 監聽等級變化
-        watchEffect(checkLvlUp);
-        return { siteData, player, monster, playerAttack, onSubmit, scroll};
+        watchEffect(check_lvlup);
+        return { siteData, player, monster, player_attack, onSubmit, scroll};
     }
 }).mount("#app");
