@@ -5,10 +5,10 @@ createApp({
     setup() {
         // 網站 UI 數據
         const siteData = reactive({
-            siteName: "骰子魔物戰",
+            siteName: "我的網站",
             navLinks: [
                 { text: "首頁", url: "" },
-                { text: "角色資訊", url: "https://yyanoo.github.io/find_work/main1.html" }
+                { text: "聯絡方式", url: "https://yyanoo.github.io/find_work/main1.html" }
             ],
 
             Main_title: "骰子魔物戰",
@@ -28,8 +28,8 @@ createApp({
         // 怪物數據
         const monster = reactive({
             get_exp: 3,
-            hp: ref(100),
-            max_hp: 100,
+            hp: ref(10),
+            max_hp: 10,
             atk: 2
         });
 
