@@ -1,0 +1,28 @@
+{
+    "monster":[
+        {
+            "name":"史萊姆",
+            "lvl":1,
+            "hp":10,
+            "atk":1,
+            "get_exp":5,
+            "spawn":0.5
+        },
+        {
+            "name":"蟲子",
+            "lvl":3,
+            "hp":15,
+            "atk":2,
+            "get_exp":8,
+            "spawn":0.3
+        },
+        {
+            "name":"野豬",
+            "lvl":5,
+            "hp":20,
+            "atk":3,
+            "get_exp":10,
+            "spawn":0.2
+        }
+    ]
+}
