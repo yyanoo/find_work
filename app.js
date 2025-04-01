@@ -33,14 +33,15 @@ createApp({
             atk: 2
         });
 
-        //隨機1到6
-        const diceRoll = reactive({
-            numRoll:0
+        //網頁狀態管理
+        const textControlPanel = reactive({
+            numRoll:0,
+            textGameover:"Game Over"
         });
 
         function rollDice() {
             return Math.floor(Math.random() * 6) + 1;
-        }
+        };
 
         // 檢查等級提升
         function checkLvlUp(){
@@ -56,27 +57,34 @@ createApp({
         // 玩家攻擊
         function playerAttack(){
             if (monster.hp > 0) {
-                diceRoll.numRoll = rollDice();
-                monster.hp -= Math.floor(player.atk*diceRoll.numRoll);
-                player.hp -= monster.atk;
-                // 怪物重生
-                if (monster.hp <= 0) {
-                    player.exp += monster.get_exp;
-                    monster.hp = monster.max_hp;
+                textControlPanel.numRoll = rollDice();
+                monster.hp -= player.atk*textControlPanel.numRoll;
+                monsterControlPanel();
+            }
+        };
+
+        //怪物狀態管理
+        function monsterControlPanel(){
+            player.hp -= monster.atk;
+            // 怪物重生
+            if(monster.hp <= 0){
+                player.exp += monster.get_exp;
+                monster.hp = monster.max_hp;
+            }
+        };
+
+        //玩家血量管理
+        function hpControlPanel(){
+            if(player.hp > 0 && player.hp < player.max_hp){
+                player.hp += player.max_hp/2;
+                if(player.hp > player.max_hp){
+                    player.hp = player.max_hp;
                 }
             }
         };
 
-        function healHp(){
-
-        };
-
-        function gameOver(){
-
-        };
-
         // 監聽等級變化
         watchEffect(checkLvlUp);
-        return {siteData, player, monster, diceRoll, playerAttack};
+        return {siteData, player, monster, textControlPanel, playerAttack, hpControlPanel, monsterControlPanel};
     }
 }).mount("#app");
