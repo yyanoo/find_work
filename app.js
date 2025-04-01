@@ -86,6 +86,6 @@ createApp({
 
         // 監聽等級變化
         watchEffect(checkLvlUp);
-        return {siteData, player, monster, textControlPanel, playerAttack, hpControlPanel};
+        return {siteData, player, monster, textControlPanel, playerAttack, hpControlPanel, monsterControlPanel};
     }
 }).mount("#app");
