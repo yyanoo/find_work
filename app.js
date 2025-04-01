@@ -11,12 +11,12 @@ createApp({
                 { text: "聯絡方式", url: "https://yyanoo.github.io/find_work/main1.html" }
             ],
 
-            Main_title: "骰子魔物戰",
-            Sub_title: "點擊按鈕 進行投骰子 依照大小來決定移動距離與傷害判例",
+            mainTitle: "骰子魔物戰",
+            subTitle: "點擊按鈕 進行投骰子 依照大小來決定傷害判例",
         });
 
         // 玩家數據
-        const player = reactive({
+        let player = reactive({
             lvl: 1,
             exp: 0,
             exp_tonextlvl: 5,
@@ -25,13 +25,24 @@ createApp({
             atk: 3
         });
 
+        const monsterName =[
+            {
+                
+            }
+        ]
         // 怪物數據
         const monster = reactive({
             get_exp: 3,
-            hp: ref(10),
-            max_hp: 10,
+            hp:100,
+            max_hp: 100,
             atk: 2
         });
+
+        //隨機1到6
+        const diceRoll = ref(1);
+        function rollDice() {
+            return Math.floor(Math.random() * 6) + 1;
+        }
 
         // 檢查等級提升
         function checkLvlUp(){
@@ -47,16 +58,19 @@ createApp({
         // 玩家攻擊
         function playerAttack(){
             if (monster.hp > 0) {
-                monster.hp -= player.atk;
+                const roll = rollDice()/2;
+                monster.hp -= Math.floor(player.atk*roll);
+                diceRoll.value = roll;
+                // 怪物重生
                 if (monster.hp <= 0) {
                     player.exp += monster.get_exp;
-                    monster.hp = monster.max_hp; // 怪物重生
+                    monster.hp = monster.max_hp;
                 }
             }
         };
 
         // 監聽等級變化
         watchEffect(checkLvlUp);
-        return { siteData, player, monster, playerAttack};
+        return {siteData, player, monster, playerAttack};
     }
 }).mount("#app");
