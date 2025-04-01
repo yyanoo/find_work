@@ -27,7 +27,7 @@ createApp({
 
         const monsterName =[
             {
-                
+                "aaaa"
             }
         ]
         // 怪物數據
