@@ -16,7 +16,7 @@ createApp({
         });
 
         // 玩家數據
-        let player = reactive({
+        const player = reactive({
             lvl: 1,
             exp: 0,
             exp_tonextlvl: 5,
