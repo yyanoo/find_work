@@ -16,7 +16,7 @@ createApp({
         });
 
         // 玩家數據
-        const player = reactive({
+        let player = reactive({
             lvl: 1,
             exp: 0,
             exp_tonextlvl: 5,
@@ -33,15 +33,14 @@ createApp({
             atk: 2
         });
 
-        //網頁狀態管理
-        const textControlPanel = reactive({
-            numRoll:0,
-            textGameover:"Game Over"
+        //隨機1到6
+        const diceRoll = reactive({
+            numRoll:0
         });
 
         function rollDice() {
             return Math.floor(Math.random() * 6) + 1;
-        };
+        }
 
         // 檢查等級提升
         function checkLvlUp(){
@@ -57,35 +56,27 @@ createApp({
         // 玩家攻擊
         function playerAttack(){
             if (monster.hp > 0) {
-                textControlPanel.numRoll = rollDice();
+                diceRoll.numRoll = rollDice();
                 monster.hp -= Math.floor(player.atk*diceRoll.numRoll);
-                monsterControlPanel();
+                player.hp -= monster.atk;
+                // 怪物重生
+                if (monster.hp <= 0) {
+                    player.exp += monster.get_exp;
+                    monster.hp = monster.max_hp;
+                }
             }
         };
 
-        //怪物狀態管理
-        function monsterControlPanel(){
-            player.hp -= monster.atk;
-            // 怪物重生
-            if(monster.hp <= 0){
-                player.exp += monster.get_exp;
-                monster.hp = monster.max_hp;
-            }
+        function healHp(){
+
         };
 
-        //玩家血量管理
-        function hpControlPanel(){
-            if(player.hp > 0){
-                player.hp += player.max_hp/2
-            }
-            //游戲結束
-            else if(player.hp < 0){
-                document.getElementById("game-over").innerHTML = textControlPanel.textGameover;
-            }
+        function gameOver(){
+
         };
 
         // 監聽等級變化
         watchEffect(checkLvlUp);
-        return {siteData, player, monster, textControlPanel, playerAttack, hpControlPanel, monsterControlPanel};
+        return {siteData, player, monster, diceRoll, playerAttack};
     }
 }).mount("#app");
