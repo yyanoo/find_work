@@ -25,11 +25,6 @@ createApp({
             atk: 3
         });
 
-        const monsterName =[
-            {
-                "aaaa"
-            }
-        ]
         // 怪物數據
         const monster = reactive({
             get_exp: 3,
