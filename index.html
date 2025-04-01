@@ -39,20 +39,21 @@
         <div class="container">
             <!-- 主要區塊 -->
             <header class="text-center mt-4">
-                <h2>{{ siteData.mainTitle }}</h2>
-                <p>{{ siteData.subTitle }}</p>
+                <h1>{{ siteData.mainTitle }}</h1>
+                <h2>{{ siteData.subTitle }}</h2>
             </header>
 
             <div class="row mt-4">
+
                 <!-- 角色資訊 -->
                 <div class="col-md-6">
                     <div class="card shadow">
                         <div class="card-body">
                             <h2 class="card-title">角色資訊</h2>
                             <p class="card-text">等級：<strong>{{ player.lvl }}</strong></p>
-                            <p class="card-text">經驗值：<strong>{{ player.exp }} / {{ player.exp_tonextlvl }}</strong></p>
                             <p class="card-text">生命值：<strong>{{ player.hp }} / {{ player.max_hp }}</strong></p>
                             <p class="card-text">攻擊力：<strong>{{ player.atk }}</strong></p>
+                            <p class="card-text">經驗值：<strong>{{ player.exp }} / {{ player.exp_tonextlvl }}</strong></p>
                         </div>
                     </div>
                 </div>
@@ -64,19 +65,31 @@
                             <h2 class="card-title">怪物資訊</h2>
                             <p class="card-text">生命值：<strong>{{ monster.hp }} / {{ monster.max_hp }}</strong></p>
                             <p class="card-text">攻擊力：<strong>{{ monster.atk }}</strong></p>
+                            <p class="card-text">獲得經驗值：<strong>{{ monster.get_exp }}</strong></p>
                         </div>
                     </div>
                 </div>
+
+                <!-- 骰子數 -->
+                <div class="col-md-12">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h2 class="card-title">骰子數：<strong>{{ diceRoll.numRoll }}</h2>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <!-- 攻擊按鈕 -->
             <div class="text-center mt-4">
-                <button class="btn btn-danger btn-lg" @click="playerAttack">攻擊怪物</button>
+                <button class="btn btn-danger btn-lg" @click="playerAttack">攻擊</button>
+                <button class="btn btn-danger btn-lg" @click="playerAttack">休息</button>
             </div>
+
         </div>
     </div>
     <script defer src="app.js"></script>
-
 </body>
 
 </html>

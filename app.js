@@ -34,7 +34,10 @@ createApp({
         });
 
         //隨機1到6
-        const diceRoll = ref(1);
+        const diceRoll = reactive({
+            numRoll:0
+        });
+
         function rollDice() {
             return Math.floor(Math.random() * 6) + 1;
         }
@@ -53,9 +56,9 @@ createApp({
         // 玩家攻擊
         function playerAttack(){
             if (monster.hp > 0) {
-                const roll = rollDice()/2;
-                monster.hp -= Math.floor(player.atk*roll);
-                diceRoll.value = roll;
+                diceRoll.numRoll = rollDice();
+                monster.hp -= Math.floor(player.atk*diceRoll.numRoll);
+                player.hp -= monster.atk;
                 // 怪物重生
                 if (monster.hp <= 0) {
                     player.exp += monster.get_exp;
@@ -64,8 +67,16 @@ createApp({
             }
         };
 
+        function healHp(){
+
+        };
+
+        function gameOver(){
+
+        };
+
         // 監聽等級變化
         watchEffect(checkLvlUp);
-        return {siteData, player, monster, playerAttack};
+        return {siteData, player, monster, diceRoll, playerAttack};
     }
 }).mount("#app");
