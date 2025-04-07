@@ -28,8 +28,8 @@ createApp({
         // 怪物數據
         const monster = reactive({
             get_exp: 3,
-            hp:100,
-            max_hp: 100,
+            hp: 50,
+            max_hp: 50,
             atk: 2
         })
 
@@ -37,14 +37,14 @@ createApp({
         const textControlPanel = reactive({
             numRoll:0,
             textGameover:"Game Over"
-        })
+        });
 
         function rollDice() {
             return Math.floor(Math.random() * 6) + 1;
         }
 
         // 檢查等級提升
-        function checkLvlUp(){
+        function checkLvlUp() {
             while (player.exp >= player.exp_tonextlvl) {
                 player.exp -= player.exp_tonextlvl;
                 player.lvl++;
@@ -55,24 +55,34 @@ createApp({
         }
 
         // 玩家攻擊
-        function playerAttack(){
+        function playerAttack() {
             if (monster.hp > 0) {
                 textControlPanel.numRoll = rollDice();
-                monster.hp -= player.atk*textControlPanel.numRoll;
-                monsterControlPanel();
+                monster.hp -= player.atk * textControlPanel.numRoll;
+                //受到怪物攻擊
+                player.hp -= monster.atk;
+                monsterCheck();
+                hpCheck();
+            }
+
+        }
+
+        //玩家生命值回復
+        function playerHeal() {
+            if (player.hp > 0 && player.hp < player.max_hp) {
+                player.hp = Math.min(player.hp + player.max_hp / 2, player.max_hp)
             }
         }
 
         //怪物狀態管理
         function monsterControlPanel(){
             player.hp -= monster.atk;
-            gameOver();
             // 怪物重生
-            if(monster.hp <= 0){
+            if (monster.hp <= 0) {
                 player.exp += monster.get_exp;
                 monster.hp = monster.max_hp;
             }
-        }
+        };
 
         //玩家血量管理
         function hpControlPanel(){
@@ -82,18 +92,10 @@ createApp({
                     player.hp = player.max_hp;
                 }
             }
-        }
-
-        function gameControlPanel(){
-            if(player.hp < 0){
-                player.hp = 0;
-                document.querySelector('#gameOver').innerText ='GameOver';
-                this.isDisabled = true;
-            }
-        }
+        };
 
         // 監聽等級變化
         watchEffect(checkLvlUp);
-        return {siteData, player, monster, textControlPanel, playerAttack, hpControlPanel, monsterControlPanel, gameControlPanel, isDisabled: false};
+        return {siteData, player, monster, textControlPanel, playerAttack, hpControlPanel, monsterControlPanel};
     }
 }).mount("#app");
