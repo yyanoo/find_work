@@ -15,63 +15,7 @@
 </head>
 
 <body class="bg-light">
-    <!-- 導覽列 -->
-    <div id="app">
-        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">{{ siteData.siteName }}</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item" v-for="link in siteData.navLinks" :key="link.text">
-                            <a class="nav-link" :href="link.url">{{ link.text }}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container">
-            <!-- 主要區塊 -->
-            <header class="text-center mt-4">
-                <h2>{{ siteData.Main_title }}</h2>
-                <p>{{ siteData.Sub_title }}</p>
-            </header>
-
-            <div class="row mt-4">
-                <!-- 角色資訊 -->
-                <div class="col-md-6">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <h2 class="card-title">角色資訊</h2>
-                            <p class="card-text">等級：<strong>{{ player.lvl }}</strong></p>
-                            <p class="card-text">經驗值：<strong>{{ player.exp }} / {{ player.exp_tonextlvl }}</strong></p>
-                            <p class="card-text">生命值：<strong>{{ player.hp }} / {{ player.max_hp }}</strong></p>
-                            <p class="card-text">攻擊力：<strong>{{ player.atk }}</strong></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 怪物資訊 -->
-                <div class="col-md-6">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <h2 class="card-title">怪物資訊</h2>
-                            <p class="card-text">生命值：<strong>{{ monster.hp }} / {{ monster.max_hp }}</strong></p>
-                            <p class="card-text">攻擊力：<strong>{{ monster.atk }}</strong></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 攻擊按鈕 -->
-            <div class="text-center mt-4">
-                <button class="btn btn-danger btn-lg" @click="playerAttack">攻擊怪物</button>
-            </div>
-        </div>
-    </div>
+    
     <script defer src="app.js"></script>
 
 </body>
