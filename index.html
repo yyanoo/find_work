@@ -75,7 +75,7 @@
                 <div class="col-md-12">
                     <div class="card shadow">
                         <div class="card-body">
-                            <h2 class="card-title text-center" id="game-over">骰子數：<strong>{{ textControlPanel.numRoll }}</h2>
+                            <h2 class="card-title text-center" id="gameOver">骰子數：<strong>{{ textControlPanel.numRoll }}</h2>
                             <p class="card-text"><strong>點擊攻擊按鈕玩家將與怪物戰鬥，并且雙方受到傷害</strong></p>
                             <p class="card-text"><strong>點擊休息玩家將會恢復生命值,如果玩家生命值為0時遊戲結束</strong></p>
                         </div>
@@ -86,8 +86,8 @@
 
             <!-- 攻擊按鈕 -->
             <div class="text-center mt-4">
-                <button class="btn btn-danger btn-lg" @click="playerAttack">攻擊</button>
-                <button class="btn btn-danger btn-lg" @click="hpControlPanel">休息</button>
+                <button class="btn btn-danger btn-lg" @click="playerAttack" :disabled="isDisabled" id="gamePlay">攻擊</button>
+                <button class="btn btn-danger btn-lg" @click="hpControlPanel" :disabled="isDisabled" id="gamePlay">休息</button>
             </div>
 
         </div>
