@@ -56,12 +56,12 @@ createApp({
 
         // 玩家攻擊
         function playerAttack() {
-            hpCheck();
             if (monster.hp > 0) {
                 textControlPanel.numRoll = rollDice();
                 monster.hp -= player.atk * textControlPanel.numRoll;
                 //受到怪物攻擊
                 player.hp -= monster.atk;
+                hpCheck();
                 monsterCheck();
             }
             
@@ -86,9 +86,9 @@ createApp({
         function hpCheck() {
             // gameOver
             if (player.hp <= 0) {
-                player.hp = 0;
                 document.querySelector('#game-over').textContent = textControlPanel.textGameover;
                 document.querySelector('#button_control').disabled = true;
+                player.hp = 0;
             }
         }
 
