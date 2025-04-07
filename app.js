@@ -76,20 +76,19 @@ createApp({
         //玩家血量管理
         function hpControlPanel(){
           if(player.hp < 0){
-            player.hp =0;
+            player.hp = 0;
           }
             if(player.hp > 0 && player.hp < player.max_hp){
                 player.hp += player.max_hp/2;
                 if(player.hp > player.max_hp){
                     player.hp = player.max_hp;
                 }
-            }else if(player.hp <= 0){
+            }else if(player.hp = 0){
               gameOver();
             }
         }
 
         function gameOver(){
-          player.hp = 0;
           document.querySelector('#game-over').textContent = textControlPanel.textGameover;
           document.querySelector('#button_control').disabled = true;
         }
