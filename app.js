@@ -72,7 +72,7 @@ createApp({
             if (player.hp > 0 && player.hp < player.max_hp) {
                 player.hp += player.max_hp / 2;
             }
-            if (player.hp > player.max_hp){
+            if (player.hp > player.max_hp) {
                 player.hp = player.max_hp;
             }
         }
@@ -99,5 +99,5 @@ createApp({
         watchEffect(checkLvlUp);
         return { siteData, player, monster, textControlPanel, playerAttack, playerHeal, monsterCheck, hpCheck };
     }
-    
+
 }).mount("#app");
