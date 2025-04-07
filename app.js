@@ -61,8 +61,8 @@ createApp({
                 monster.hp -= player.atk * textControlPanel.numRoll;
                 //受到怪物攻擊
                 player.hp -= monster.atk;
-                hpCheck();
                 monsterCheck();
+                hpCheck();
             }
             
         }
@@ -77,7 +77,7 @@ createApp({
         //怪物狀態管理
         function monsterCheck() {
             // 怪物重生
-            if (monster.hp <= 0) {
+            if (monster.hp <= 0 && player.hp > 0) {
                 player.exp += monster.get_exp;
                 monster.hp = monster.max_hp;
             }
