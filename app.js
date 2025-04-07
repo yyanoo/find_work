@@ -61,8 +61,8 @@ createApp({
                 monster.hp -= player.atk * textControlPanel.numRoll;
                 //受到怪物攻擊
                 player.hp -= monster.atk;
-                monsterCheck();
                 hpCheck();
+                monsterCheck();
             }
 
         }
