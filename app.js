@@ -71,9 +71,9 @@ createApp({
         function playerHeal() {
             if (player.hp > 0 && player.hp < player.max_hp) {
                 player.hp += player.max_hp / 2;
-                if (player.hp > player.max_hp){
-                    player.hp = player.max_hp;
-                }
+            }
+            if (player.hp > player.max_hp){
+                player.hp = player.max_hp;
             }
         }
 
