@@ -99,4 +99,5 @@ createApp({
         watchEffect(checkLvlUp);
         return { siteData, player, monster, textControlPanel, playerAttack, playerHeal, monsterCheck, hpCheck };
     }
+    
 }).mount("#app");
