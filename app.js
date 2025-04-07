@@ -80,12 +80,14 @@ createApp({
                 if(player.hp > player.max_hp){
                     player.hp = player.max_hp;
                 }
+            }else if(player.hp < 0 || player.hp === 0){
+              gameOver();
             }
         };
 
         function gameOver(){
           if(player.hp === 0){
-            document.querySelector('#game-over').textContent = 'Game Over';
+            document.querySelector('#game-over').textContent = textControlPanel.textGameover;
             document.querySelector('#button_control').disabled = true;
           }
         }
