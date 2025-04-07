@@ -83,8 +83,16 @@ createApp({
             }
         };
 
+        function gameOver(){
+          if(player.hp === 0){
+            document.querySelector('#game-over').textContent = 'Game Over';
+            document.querySelector('#button_control').disabled = true;
+          }
+        }
+
         // 監聽等級變化
         watchEffect(checkLvlUp);
-        return {siteData, player, monster, textControlPanel, playerAttack, hpControlPanel, monsterControlPanel};
+        return {siteData, player, monster, textControlPanel, playerAttack, hpControlPanel, monsterControlPanel, gameOver};
     }
 }).mount("#app");
+
