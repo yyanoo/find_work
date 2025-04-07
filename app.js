@@ -6,6 +6,7 @@ createApp({
         // 網站 UI 數據
         const siteData = reactive({
             siteName: "骰子魔物戰",
+            siteLink:"./",
             navLinks: [
                 { text: "首頁", url: "./" },
                 { text: "聯絡方式", url: "./main1.html" }
