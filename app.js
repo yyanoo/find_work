@@ -28,8 +28,8 @@ createApp({
         // 怪物數據
         const monster = reactive({
             get_exp: 3,
-            hp: 100,
-            max_hp: 100,
+            hp: 50,
+            max_hp: 50,
             atk: 2
         })
 
