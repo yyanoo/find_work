@@ -28,8 +28,8 @@ createApp({
         // 怪物數據
         const monster = reactive({
             get_exp: 3,
-            hp: 50,
-            max_hp: 50,
+            hp: 100,
+            max_hp: 100,
             atk: 2
         })
 
@@ -64,20 +64,23 @@ createApp({
                 monsterCheck();
                 hpCheck();
             }
-            
+
         }
 
         //玩家生命值回復
         function playerHeal() {
             if (player.hp > 0 && player.hp < player.max_hp) {
-                player.hp = Math.min(player.hp + player.max_hp / 2, player.max_hp)
+                player.hp += player.max_hp / 2;
+            }
+            if (player.hp > player.max_hp){
+                player.hp = player.max_hp;
             }
         }
 
         //怪物狀態管理
         function monsterCheck() {
             // 怪物重生
-            if (monster.hp <= 0 && player.hp > 0) {
+            if (monster.hp <= 0) {
                 player.exp += monster.get_exp;
                 monster.hp = monster.max_hp;
             }
@@ -86,9 +89,9 @@ createApp({
         function hpCheck() {
             // gameOver
             if (player.hp <= 0) {
+                player.hp = 0;
                 document.querySelector('#game-over').textContent = textControlPanel.textGameover;
                 document.querySelector('#button_control').disabled = true;
-                player.hp = 0;
             }
         }
 
