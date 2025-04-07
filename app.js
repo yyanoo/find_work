@@ -13,7 +13,7 @@ createApp({
 
             mainTitle: "骰子魔物戰",
             subTitle: "點擊按鈕 進行投骰子 依照大小來決定傷害判例",
-        });
+        })
 
         // 玩家數據
         const player = reactive({
@@ -23,7 +23,7 @@ createApp({
             hp: 10,
             max_hp: 10,
             atk: 3
-        });
+        })
 
         // 怪物數據
         const monster = reactive({
@@ -31,17 +31,17 @@ createApp({
             hp:100,
             max_hp: 100,
             atk: 2
-        });
+        })
 
         //網頁狀態管理
         const textControlPanel = reactive({
             numRoll:0,
             textGameover:"Game Over"
-        });
+        })
 
         function rollDice() {
             return Math.floor(Math.random() * 6) + 1;
-        };
+        }
 
         // 檢查等級提升
         function checkLvlUp(){
@@ -52,7 +52,7 @@ createApp({
                 player.atk += 3;
                 player.hp = player.max_hp += 10;
             }
-        };
+        }
 
         // 玩家攻擊
         function playerAttack(){
@@ -61,7 +61,7 @@ createApp({
                 monster.hp -= player.atk*textControlPanel.numRoll;
                 monsterControlPanel();
             }
-        };
+        }
 
         //怪物狀態管理
         function monsterControlPanel(){
@@ -71,10 +71,13 @@ createApp({
                 player.exp += monster.get_exp;
                 monster.hp = monster.max_hp;
             }
-        };
+        }
 
         //玩家血量管理
         function hpControlPanel(){
+          if(player.hp < 0){
+            player.hp =0;
+          }
             if(player.hp > 0 && player.hp < player.max_hp){
                 player.hp += player.max_hp/2;
                 if(player.hp > player.max_hp){
@@ -83,7 +86,7 @@ createApp({
             }else if(player.hp <= 0){
               gameOver();
             }
-        };
+        }
 
         function gameOver(){
           player.hp = 0;
@@ -96,3 +99,4 @@ createApp({
         return {siteData, player, monster, textControlPanel, playerAttack, hpControlPanel, monsterControlPanel, gameOver};
     }
 }).mount("#app");
+
